@@ -1,37 +1,79 @@
+/* Général */
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f2f2f2;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f4f7f6;
     color: #333;
-    margin: 40px;
+    margin: 0;
+    padding: 0;
     line-height: 1.6;
 }
 
-h1 {
+/* Header */
+header {
+    background: #0077cc;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 2.2em;
+}
+
+header p {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+/* Main */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Projets */
+.projets h2 {
+    text-align: center;
     color: #0077cc;
+    margin-bottom: 30px;
 }
 
-h2 {
-    color: #444;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    margin: 8px 0;
+.projet {
     background: #e6f0ff;
-    padding: 8px;
-    border-radius: 5px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
 }
 
-a {
+.projet:hover {
+    transform: scale(1.02);
+}
+
+/* Contact */
+.contact {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.contact a {
     color: #ff6600;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.2s;
 }
 
-a:hover {
-    text-decoration: underline;
+.contact a:hover {
+    color: #cc5200;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #0077cc;
+    color: white;
+    margin-top: 40px;
 }
