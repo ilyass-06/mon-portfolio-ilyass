@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio - Ilyass</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Bonjour, je m'appelle Ilyass </h1>
+
+    <h2>Mes projets</h2>
+    <ul>
+        <li> Projet 1 : Création de ce site web personnel</li>
+        <li> Projet 2 : Mini calculatrice en Python</li>
+        
+    </ul>
+
+    <p>Mon profil GitHub : 
+        <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
+    </p>
+</body>
+</html>
