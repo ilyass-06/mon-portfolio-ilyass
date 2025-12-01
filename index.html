@@ -8,60 +8,69 @@
 </head>
 <body>
 
-    <!-- Toggle Dark Mode -->
-    <button id="theme-toggle">🌙</button>
+    <!-- TOGGLE LIGHT/DARK -->
+    <button id="theme-toggle">
+        <img id="theme-icon" src="icons/night-mode.svg" alt="Toggle theme" width="24" height="24">
+    </button>
 
-    <header class="hero">
-        <h1>Bonjour, je m'appelle Ilyass 👋</h1>
-        <p>Étudiant en L1 informatique à l’Université d’Avignon</p>
-    </header>
+    <div class="site-wrapper">
+        <header class="hero">
+            <h1>Bonjour, je m'appelle Ilyass 👋</h1>
+            <p>Étudiant en L1 informatique à l’Université d’Avignon</p>
+        </header>
 
-    <main>
-        
-        <!-- ABOUT SECTION -->
-<section class="about fade-in">
-    <h2>À propos de moi</h2>
-    <p>
-        Je suis encore débutant en informatique, mais je suis vraiment passionné par ca. 
-        J'aimerais travailler sur des projets informatiques, même si simples pour l'instant. 
-        Chaque jour, j'apprends un peu plus et j'aime essayer de me dépasser de plus en plus.
-    </p>
-</section>
+        <main>
 
-        <!-- PROJECTS SECTION -->
-        <section class="projets fade-in">
-            <h2>Mes projets</h2>
+            <!-- ABOUT -->
+            <section class="about fade-in">
+                <h2>À propos de moi</h2>
+                <p>
+                    Je suis encore débutant en informatique, mais je suis vraiment passionné par ca.
+                     J'aimerais travailler sur des projets informatiques, même si simples pour l'instant. 
+                        Chaque jour, j'apprends un peu plus et j'aime essayer de me dépasser de plus en plus.
+                </p>
+            </section>
 
-            <article class="projet">
-                <h3>Portfolio Personnel</h3>
-                <p>Création de mon site web pour présenter mes projets.</p>
-            </article>
+            <!-- PROJECTS -->
+            <section class="projets fade-in">
+                <h2>Mes projets</h2>
+                <article class="projet">
+                    <h3>Portfolio Personnel</h3>
+                    <p>Création de mon site web pour présenter mes projets future.</p>
+                </article>
+            </section>
 
-        </section>
+            <!-- CONTACT -->
+            <section class="contact fade-in">
+                <h2>Contact</h2>
+                <p>
+                    Voici mon GitHub :
+                    <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
+                </p>
+            </section>
 
-        <!-- CONTACT SECTION -->
-        <section class="contact fade-in">
-            <h2>Contact</h2>
-            <p>
-                Voici mon GitHub :
-                <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
-            </p>
-        </section>
+        </main>
 
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Ilyass – Tous droits réservés</p>
-    </footer>
+        <footer>
+            <p>&copy; 2025 Ilyass – Tous droits réservés</p>
+        </footer>
+    </div>
 
     <script>
-        // Mode sombre
+        // Toggle light/dark mode
         const toggleBtn = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+
         toggleBtn.onclick = () => {
-            document.body.classList.toggle("dark");
-            toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+            document.body.classList.toggle("light");
+            if(document.body.classList.contains("light")){
+                themeIcon.src = 'icons/sun-mode.svg';
+            } else {
+                themeIcon.src = 'icons/night-mode.svg';
+            }
         };
     </script>
 
 </body>
 </html>
+
