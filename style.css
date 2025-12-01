@@ -1,56 +1,130 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio – Ilyass</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-    <!-- Bouton Mode Sombre -->
-    <button id="theme-toggle">🌙</button>
+/* GLOBAL */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f6fa;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+}
 
-    <header>
-        <h1>Bonjour, je m'appelle Ilyass </h1>
-        <p>Étudiant en informatique à l'université d'Avignon</p>
-    </header>
+/* MODE SOMBRE */
+body.dark {
+    background: #1e1f22;
+    color: #e6e6e6;
+}
 
-    <main>
+/* SWITCH DARK MODE */
+#theme-toggle {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    border: none;
+    background: #ffffffcc;
+    padding: 10px 14px;
+    border-radius: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s;
+    z-index: 1000;
+}
+body.dark #theme-toggle {
+    background: #00000055;
+    color: #fff;
+}
 
-        <!-- SECTION PROJETS -->
-        <section class="projets">
-            <h2>Mes projets</h2>
+/* HEADER */
+header {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #0077cc, #005fa3);
+    color: white;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: slide-down 0.8s ease;
+}
 
-            <div class="projet fade-in">
-                <h3>💻 Portfolio Personnel</h3>
-                <p>Création de mon site web pour présenter mes projets future.</p>
-            </div>
+@keyframes slide-down {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        </section>
+/* MAIN */
+main {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 25px;
+}
 
-        <!-- SECTION CONTACT -->
-        <section class="contact fade-in">
-            <h2>Contact</h2>
-            <p>Mon profil GitHub : 
-                <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
-            </p>
-        </section>
+/* TITRES */
+.projets h2, .contact h2 {
+    text-align: center;
+    font-size: 2.4em;
+    margin-bottom: 40px;
+    font-weight: 600;
+    color: #005fa3;
+}
+body.dark .projets h2,
+body.dark .contact h2 {
+    color: #4da8ff;
+}
 
-    </main>
+/* PROJETS */
+.projet {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: fade 0.8s ease forwards;
+    opacity: 0;
+}
+body.dark .projet {
+    background: #2b2d31;
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.08);
+}
 
-    <footer>
-        <p>&copy; 2025 Ilyass – Tous droits réservés</p>
-    </footer>
+.projet:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
 
-    <script>
-        // DARK MODE
-        const toggleBtn = document.getElementById("theme-toggle");
-        toggleBtn.onclick = () => {
-            document.body.classList.toggle("dark");
-            toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
-        };
-    </script>
+/* ANIMATION */
+@keyframes fade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-</body>
-</html>
+/* CONTACT */
+.contact a {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.contact a:hover {
+    color: #cc5200;
+}
+body.dark .contact a {
+    color: #ffa055;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #005fa3;
+    color: white;
+    margin-top: 60px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+body.dark footer {
+    background: #003f70;
+}
