@@ -1,67 +1,54 @@
-/* GOOGLE FONT */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-/* GLOBAL */
 body {
     font-family: 'Inter', sans-serif;
-    background: #121212; 
-    color: #e0e0e0; 
+    background: #121212; /* black minimal default */
+    color: #e0e0e0;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     transition: background 0.3s, color 0.3s;
 }
 
-/* MODE LIGHT (toggle) */
 body.light {
     background: #f5f5f5;
     color: #1a1a1a;
 }
 
-/* SWITCH DARK MODE */
 #theme-toggle {
     position: fixed;
-    right: 20px;
     top: 20px;
+    right: 20px;
     border: none;
     background: #2c2c2c;
     padding: 10px 14px;
     border-radius: 50px;
-    font-size: 1.2em;
     cursor: pointer;
     backdrop-filter: blur(8px);
-    transition: background 0.3s, transform 0.3s;
     z-index: 1000;
+    transition: transform 0.3s, background 0.3s;
 }
 #theme-toggle:hover {
     transform: scale(1.1);
 }
 
-/* HEADER */
 header {
     text-align: center;
     padding: 80px 20px;
     background: #1f1f1f;
     color: #f0f0f0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: none;
-    animation: slide-down 0.8s ease;
+}
+body.light header {
+    background: #eaeaea;
+    color: #1a1a1a;
 }
 
-@keyframes slide-down {
-    from { opacity: 0; transform: translateY(-40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* MAIN */
 main {
     max-width: 900px;
     margin: 50px auto;
     padding: 0 20px;
 }
 
-/* TITLES */
 .projets h2, .contact h2, .about h2 {
     text-align: center;
     font-size: 2.2em;
@@ -69,31 +56,32 @@ main {
     font-weight: 600;
     color: #e0e0e0;
 }
+body.light .projets h2,
+body.light .contact h2,
+body.light .about h2 {
+    color: #1a1a1a;
+}
 
-/* PROJETS */
 .projet {
     background: #1f1f1f;
     padding: 25px;
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s, color 0.3s;
     animation: fade 0.8s ease forwards;
     opacity: 0;
 }
-
 .projet:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 25px rgba(0,0,0,0.6);
 }
-
-/* ANIMATTION */
-@keyframes fade {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+body.light .projet {
+    background: #ffffff;
+    color: #1a1a1a;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
-/* CONTACT */
 .contact a {
     color: #ffa500;
     text-decoration: none;
@@ -103,20 +91,27 @@ main {
 .contact a:hover {
     color: #ffb84d;
 }
+body.light .contact a {
+    color: #ff6600;
+}
 
-/* FOOTER */
 footer {
     text-align: center;
     padding: 25px 20px;
     background: #1f1f1f;
     color: #f0f0f0;
     margin-top: 60px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    box-shadow: none;
+}
+body.light footer {
+    background: #eaeaea;
+    color: #1a1a1a;
 }
 
-/* RESPONSIVE */
+@keyframes fade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 600px) {
     main { padding: 0 15px; }
     .projets h2, .contact h2 { font-size: 2em; }
