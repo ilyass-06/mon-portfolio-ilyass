@@ -3,32 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio - Ilyass</title>
+    <title>Portfolio – Ilyass</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+
+    <!-- Toggle Dark Mode -->
+    <button id="theme-toggle">🌙</button>
+
+    <header class="hero">
         <h1>Bonjour, je m'appelle Ilyass 👋</h1>
-        <p>Étudiant en informatique a l'universite de avignon</p>
+        <p>Étudiant en L1 informatique à l’Université d’Avignon</p>
     </header>
 
     <main>
-        <section class="projets">
-            <h2>Mes projets</h2>
-            <div class="projet">
-                <h3>💻 Portfolio Personnel</h3>
-                <p>Création de mon site web pour présenter mes projets.</p>
-            </div>
+
+        <!-- ABOUT SECTION -->
+        <section class="about fade-in">
+            <h2>À propos de moi</h2>
+            <p>
+                Passionné par l'informatiquee t le développement web . 
+                J'aime développer des sites Web (je suis encore débutant).
+            </p>
         </section>
 
-        <section class="contact">
-            <h2>Contact</h2>
-            <p>Mon profil GitHub : <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a></p>
+        <!-- PROJECTS SECTION -->
+        <section class="projets fade-in">
+            <h2>Mes projets</h2>
+
+            <article class="projet">
+                <h3>💻 Portfolio Personnel</h3>
+                <p>Création de mon site web pour présenter mes projets.</p>
+            </article>
+
         </section>
+
+        <!-- CONTACT SECTION -->
+        <section class="contact fade-in">
+            <h2>Contact</h2>
+            <p>
+                Voici mon GitHub :
+                <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
+            </p>
+        </section>
+
     </main>
 
     <footer>
-        <p>&copy; 2025 Ilyass</p>
+        <p>&copy; 2025 Ilyass – Tous droits réservés</p>
     </footer>
+
+    <script>
+        // Mode sombre
+        const toggleBtn = document.getElementById("theme-toggle");
+        toggleBtn.onclick = () => {
+            document.body.classList.toggle("dark");
+            toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+        };
+    </script>
+
 </body>
 </html>
