@@ -1,72 +1,75 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio – Ilyass</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio – Ilyass</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-        <button id="theme-toggle">
-        <span id="theme-icon">🌙</span>
-    </button>
+    <!-- TOGGLE LIGHT/DARK -->
+    <button id="theme-toggle">🌙</button>
 
-    <div class="site-wrapper">
-        <header class="hero">
-            <h1>Bonjour, je m'appelle Ilyass 👋</h1>
-            <p>Étudiant en L1 informatique à l’Université d’Avignon</p>
-        </header>
+    <div class="site-wrapper">
+        <header class="hero">
+            <h1>Bonjour, je m'appelle Ilyass 👋</h1>
+            <p>Étudiant en L1 informatique à l’Université d’Avignon</p>
+        </header>
 
-        <main>
+        <main>
 
-                        <section class="about fade-in">
-                <h2>À propos de moi</h2>
-                <p>
-                    Je suis encore débutant en informatique, mais je suis vraiment passionné par ca.
-                     J'aimerais travailler sur des projets informatiques, même si simples pour l'instant. 
-                        Chaque jour, j'apprends un peu plus et j'aime essayer de me dépasser de plus en plus.
-                </p>
-            </section>
+            <!-- ABOUT -->
+            <section class="about fade-in">
+                <h2>À propos de moi</h2>
+                <p>
+                    Je suis encore débutant en informatique, mais je suis vraiment passionné par ce domaine.
+                    J'aime travailler sur des projets informatiques, même s'ils sont simples pour l'instant.
+                    Chaque jour, j'apprends un peu plus et j'aime me dépasser constamment.
+                </p>
+            </section>
 
-                        <section class="projets fade-in">
-                <h2>Mes projets</h2>
-                <article class="projet">
-                    <h3>Portfolio Personnel</h3>
-                    <p>Création de mon site web pour présenter mes projets future.</p>
-                </article>
-            </section>
+            <!-- PROJECTS -->
+            <section class="projets fade-in">
+                <h2>Mes projets</h2>
+                <article class="projet">
+                    <h3>Portfolio Personnel</h3>
+                    <p>Création de mon site web pour présenter mes projets.</p>
+                </article>
+            </section>
 
-                        <section class="contact fade-in">
-                <h2>Contact</h2>
-                <p>
-                    Voici mon GitHub :
-                    <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
-                </p>
-            </section>
+            <!-- CONTACT -->
+            <section class="contact fade-in">
+                <h2>Contact</h2>
+                <p>
+                    Voici mon GitHub :
+                    <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
+                </p>
+            </section>
 
-        </main>
+        </main>
 
-        <footer>
-            <p>&copy; 2025 Ilyass – Tous droits réservés</p>
-        </footer>
-    </div>
+        <footer>
+            <p>&copy; 2025 Ilyass – Tous droits réservés</p>
+        </footer>
+    </div>
 
-    <script>
-        // Toggle light/dark mode
-        const toggleBtn = document.getElementById("theme-toggle");
-        const themeIcon = document.getElementById("theme-icon");
+    <script>
+        const toggleBtn = document.getElementById("theme-toggle");
 
-        toggleBtn.onclick = () => {
-            document.body.classList.toggle("light");
-            if(document.body.classList.contains("light")){
-                themeIcon.textContent = '☀️';
-            } else {
-                themeIcon.textContent = '🌙';
-            }
-        };
-    </script>
+        toggleBtn.onclick = () => {
+            document.body.classList.toggle("light");
+            if(document.body.classList.contains("light")){
+                toggleBtn.textContent = '☀️';
+            } else {
+                toggleBtn.textContent = '🌙';
+            }
+        };
+    </script>
 
 </body>
 </html>
+
+
+
 
