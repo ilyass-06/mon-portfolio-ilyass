@@ -1,79 +1,56 @@
-/* Général */
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: #f4f7f6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio – Ilyass</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* Header */
-header {
-    background: #0077cc;
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
-}
+    <!-- Bouton Mode Sombre -->
+    <button id="theme-toggle">🌙</button>
 
-header h1 {
-    margin: 0 0 10px;
-    font-size: 2.2em;
-}
+    <header>
+        <h1>Bonjour, je m'appelle Ilyass </h1>
+        <p>Étudiant en informatique à l'université d'Avignon</p>
+    </header>
 
-header p {
-    margin: 0;
-    font-size: 1.1em;
-}
+    <main>
 
-/* Main */
-main {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
+        <!-- SECTION PROJETS -->
+        <section class="projets">
+            <h2>Mes projets</h2>
 
-/* Projets */
-.projets h2 {
-    text-align: center;
-    color: #0077cc;
-    margin-bottom: 30px;
-}
+            <div class="projet fade-in">
+                <h3>💻 Portfolio Personnel</h3>
+                <p>Création de mon site web pour présenter mes projets future.</p>
+            </div>
 
-.projet {
-    background: #e6f0ff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    transition: transform 0.2s;
-}
+        </section>
 
-.projet:hover {
-    transform: scale(1.02);
-}
+        <!-- SECTION CONTACT -->
+        <section class="contact fade-in">
+            <h2>Contact</h2>
+            <p>Mon profil GitHub : 
+                <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
+            </p>
+        </section>
 
-/* Contact */
-.contact {
-    text-align: center;
-    margin-top: 40px;
-}
+    </main>
 
-.contact a {
-    color: #ff6600;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.2s;
-}
+    <footer>
+        <p>&copy; 2025 Ilyass – Tous droits réservés</p>
+    </footer>
 
-.contact a:hover {
-    color: #cc5200;
-}
+    <script>
+        // DARK MODE
+        const toggleBtn = document.getElementById("theme-toggle");
+        toggleBtn.onclick = () => {
+            document.body.classList.toggle("dark");
+            toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+        };
+    </script>
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #0077cc;
-    color: white;
-    margin-top: 40px;
-}
+</body>
+</html>
