@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Quiz – Capitales d'Europe</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .quiz-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #1f1f1f;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+
+        body.light .quiz-container {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+
+        button {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            background: #ffa500;
+            color: #1a1a1a;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="theme-toggle">🌙</button>
+
+    <div class="quiz-container">
+        <h1>Mini Quiz : Capitales d'Europe</h1>
+        <p>Force a toi 😭 </p>
+
+        <div id="quiz-area"></div>
+
+        <button id="start-btn">Commencer le quiz</button>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById("theme-toggle");
+
+        toggleBtn.onclick = () => {
+            document.body.classList.toggle("light");
+            toggleBtn.textContent =
+                document.body.classList.contains("light") ? "☀️" : "🌙";
+        };
+      
+        const QUESTIONS = [
+            ["France", "Paris"],
+            ["Italie", "Rome"],
+            ["Allemagne", "Berlin"],
+            ["Espagne", "Madrid"],
+            ["Portugal", "Lisbonne"],
+            ["Belgique", "Bruxelles"],
+            ["Suisse", "Berne"],
+            ["Autriche", "Vienne"],
+            ["Pologne", "Varsovie"],
+            ["Grèce", "Athènes"],
+            ["Suède", "Stockholm"],
+            ["Norvège", "Oslo"],
+            ["Finlande", "Helsinki"],
+            ["Danemark", "Copenhague"],
+            ["Irlande", "Dublin"],
+            ["Pays-Bas", "Amsterdam"],
+            ["Royaume-Uni", "Londres"],
+            ["Hongrie", "Budapest"],
+            ["République tchèque", "Prague"],
+            ["Croatie", "Zagreb"]
+        ];
+
+        let quizArea = document.getElementById("quiz-area");
+        let startBtn = document.getElementById("start-btn");
+
+        function startQuiz() {
+            let selected = QUESTIONS.sort(() => 0.5 - Math.random()).slice(0, 5);
+            let score = 0;
+            let index = 0;
+
+            function showQuestion() {
+                if (index >= selected.length) {
+                    quizArea.innerHTML = `<h2>Fin du quiz !</h2>
+                                          <p>Score : ${score}/5</p>`;
+                    startBtn.style.display = "block";
+                    startBtn.textContent = "Rejouer";
+                    return;
+                }
+
+                let [pays, capitale] = selected[index];
+                quizArea.innerHTML = `
+                    <h3>Quelle est la capitale de : <b>${pays}</b> ?</h3>
+                    <input id="answer" placeholder="Ta réponse..." />
+                    <button id="validate">Valider</button>
+                `;
+
+                document.getElementById("validate").onclick = () => {
+                    let rep = document.getElementById("answer").value.trim().toLowerCase();
+                    if (rep === capitale.toLowerCase()) {
+                        alert("✔ T’es chaud frerot bonne réponse !");
+                        score++;
+                    } else {
+                        alert("✘ Nooo dommage… la capitale est : " + capitale);
+                    }
+                    index++;
+                    showQuestion();
+                };
+            }
+
+            startBtn.style.display = "none";
+            showQuestion();
+        }
+
+        startBtn.onclick = startQuiz;
+    </script>
+
+</body>
+</html>
