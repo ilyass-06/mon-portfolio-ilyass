@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Quiz – Capitales d'Europe</title>
+    <title>Mini Quiz – Capitales d'Europe (force a toi😭)</title>
     <link rel="stylesheet" href="style.css">
-
     <style>
         .quiz-container {
             max-width: 700px;
@@ -14,11 +13,20 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            text-align: center;
         }
 
         body.light .quiz-container {
             background: #ffffff;
             color: #1a1a1a;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-top: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
         }
 
         button {
@@ -29,103 +37,153 @@
             font-size: 16px;
             background: #ffa500;
             color: #1a1a1a;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: 0.2s;
         }
+
         button:hover {
             transform: scale(1.05);
         }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
-
 <body>
-
     <button id="theme-toggle">🌙</button>
 
     <div class="quiz-container">
-        <h1>Mini Quiz : Capitales d'Europe</h1>
-        <p>Force a toi 😭 </p>
+        <h1>Mini Quiz – Capitales d'Europe</h1>
+        <div id="menu" class="fade-in">
+            <p>Nombre de questions :</p>
+            <input type="number" id="nbQuestions" value="5" min="1" max="20">
+            <br>
+            <button id="start-btn">Commencer le quiz</button>
+        </div>
 
-        <div id="quiz-area"></div>
+        <div id="quiz-area" style="display:none;" class="fade-in">
+            <h3 id="questionText"></h3>
+            <input type="text" id="answerInput" placeholder="Votre réponse">
+            <div id="feedback" class="feedback"></div>
+            <button id="nextBtn" style="display:none;">Suivant</button>
+        </div>
 
-        <button id="start-btn">Commencer le quiz</button>
+        <div id="scoreArea" style="display:none;" class="fade-in">
+            <h2>Fin du quiz</h2>
+            <p id="scoreText"></p>
+            <button id="restartBtn">Rejouer</button>
+        </div>
     </div>
 
     <script>
+        // Toggle light/dark
         const toggleBtn = document.getElementById("theme-toggle");
-
         toggleBtn.onclick = () => {
             document.body.classList.toggle("light");
-            toggleBtn.textContent =
-                document.body.classList.contains("light") ? "☀️" : "🌙";
+            toggleBtn.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
         };
-      
+
+        // Questions
         const QUESTIONS = [
-            ["France", "Paris"],
-            ["Italie", "Rome"],
-            ["Allemagne", "Berlin"],
-            ["Espagne", "Madrid"],
-            ["Portugal", "Lisbonne"],
-            ["Belgique", "Bruxelles"],
-            ["Suisse", "Berne"],
-            ["Autriche", "Vienne"],
-            ["Pologne", "Varsovie"],
-            ["Grèce", "Athènes"],
-            ["Suède", "Stockholm"],
-            ["Norvège", "Oslo"],
-            ["Finlande", "Helsinki"],
-            ["Danemark", "Copenhague"],
-            ["Irlande", "Dublin"],
-            ["Pays-Bas", "Amsterdam"],
-            ["Royaume-Uni", "Londres"],
-            ["Hongrie", "Budapest"],
-            ["République tchèque", "Prague"],
-            ["Croatie", "Zagreb"]
+            ["France","Paris"],["Italie","Rome"],["Allemagne","Berlin"],
+            ["Espagne","Madrid"],["Portugal","Lisbonne"],["Belgique","Bruxelles"],
+            ["Suisse","Berne"],["Autriche","Vienne"],["Pologne","Varsovie"],
+            ["Grèce","Athènes"],["Suède","Stockholm"],["Norvège","Oslo"],
+            ["Finlande","Helsinki"],["Danemark","Copenhague"],["Irlande","Dublin"],
+            ["Pays-Bas","Amsterdam"],["Royaume-Uni","Londres"],["Hongrie","Budapest"],
+            ["République tchèque","Prague"],["Croatie","Zagreb"]
         ];
 
-        let quizArea = document.getElementById("quiz-area");
-        let startBtn = document.getElementById("start-btn");
+        let quiz = [];
+        let index = 0;
+        let score = 0;
+        let nbQuestions = 5;
 
-        function startQuiz() {
-            let selected = QUESTIONS.sort(() => 0.5 - Math.random()).slice(0, 5);
-            let score = 0;
-            let index = 0;
+        const menu = document.getElementById("menu");
+        const quizArea = document.getElementById("quiz-area");
+        const questionText = document.getElementById("questionText");
+        const answerInput = document.getElementById("answerInput");
+        const feedback = document.getElementById("feedback");
+        const nextBtn = document.getElementById("nextBtn");
+        const scoreArea = document.getElementById("scoreArea");
+        const scoreText = document.getElementById("scoreText");
+        const startBtn = document.getElementById("start-btn");
+        const restartBtn = document.getElementById("restartBtn");
 
-            function showQuestion() {
-                if (index >= selected.length) {
-                    quizArea.innerHTML = `<h2>Fin du quiz !</h2>
-                                          <p>Score : ${score}/5</p>`;
-                    startBtn.style.display = "block";
-                    startBtn.textContent = "Rejouer";
-                    return;
-                }
-
-                let [pays, capitale] = selected[index];
-                quizArea.innerHTML = `
-                    <h3>Quelle est la capitale de : <b>${pays}</b> ?</h3>
-                    <input id="answer" placeholder="Ta réponse..." />
-                    <button id="validate">Valider</button>
-                `;
-
-                document.getElementById("validate").onclick = () => {
-                    let rep = document.getElementById("answer").value.trim().toLowerCase();
-                    if (rep === capitale.toLowerCase()) {
-                        alert("✔ T’es chaud frerot bonne réponse !");
-                        score++;
-                    } else {
-                        alert("✘ Nooo dommage… la capitale est : " + capitale);
-                    }
-                    index++;
-                    showQuestion();
-                };
+        startBtn.onclick = () => {
+            nbQuestions = parseInt(document.getElementById("nbQuestions").value);
+            if(isNaN(nbQuestions) || nbQuestions < 1 || nbQuestions > QUESTIONS.length){
+                nbQuestions = 5;
             }
+            quiz = QUESTIONS.sort(() => 0.5 - Math.random()).slice(0, nbQuestions);
+            index = 0;
+            score = 0;
 
-            startBtn.style.display = "none";
+            menu.style.display = "none";
+            quizArea.style.display = "block";
             showQuestion();
+        };
+
+        function showQuestion(){
+            feedback.textContent = "";
+            nextBtn.style.display = "none";
+            questionText.textContent = `Quelle est la capitale de ${quiz[index][0]} ?`;
+            answerInput.value = "";
+            answerInput.focus();
         }
 
-        startBtn.onclick = startQuiz;
+        answerInput.addEventListener("keyup", (e) => {
+            if(e.key === "Enter") checkAnswer();
+        });
+
+        function checkAnswer(){
+            const rep = answerInput.value.trim().toLowerCase();
+            const correct = quiz[index][1].toLowerCase();
+
+            if(rep === correct){
+                feedback.textContent = "Bonne réponse t'es chaud !";
+                score++;
+            } else {
+                feedback.textContent = `Mauvaise réponse frero 😭. La capitale est : ${quiz[index][1]}`;
+            }
+
+            nextBtn.style.display = "inline-block";
+        }
+
+        nextBtn.onclick = () => {
+            index++;
+            if(index < quiz.length){
+                showQuestion();
+            } else {
+                quizArea.style.display = "none";
+                scoreArea.style.display = "block";
+                scoreText.textContent = `Votre score : ${score}/${quiz.length}`;
+            }
+        };
+
+        restartBtn.onclick = () => {
+            scoreArea.style.display = "none";
+            menu.style.display = "block";
+        };
     </script>
+</body>
+</html>
+
 
 </body>
 </html>
