@@ -8,73 +8,153 @@
 </head>
 <body>
 
-    <!-- TOGGLE LIGHT/DARK -->
-    <button id="theme-toggle">🌙</button>
+<button id="theme-toggle">🌙</button>
 
-    <div class="site-wrapper">
-        <header class="hero">
-            <h1>Bonjour, je m'appelle Ilyass.</h1>
-            <p>Étudiant en L1 informatique à l’Université d’Avignon</p>
-        </header>
+<div class="site-wrapper">
+    <header class="hero">
+        <h1>Bonjour, je m'appelle Ilyass.</h1>
+        <p>Étudiant en L1 informatique à l’Université d’Avignon</p>
+    </header>
 
-        <main>
+    <main>
 
-            <!-- ABOUT -->
-            <section class="about fade-in">
-                <h2>À propos de moi</h2>
-                <p>
-                    Je suis encore débutant en informatique, mais je suis vraiment passionné par ca.
-                    J'aime travailler sur des petit projets informatiques, même s'ils sont simples pour l'instant.
-                    Chaque jour, j'apprends un peu plus et j'aime essayer de me dépasser constamment.
-                </p>
-            </section>
+        <section class="about fade-in">
+            <h2>À propos de moi</h2>
+            <p>
+                Je suis encore débutant en informatique, mais je suis vraiment passionné par ca.
+                J'aime travailler sur des petit projets informatiques, même s'ils sont simples pour l'instant.
+                Chaque jour, j'apprends un peu plus et j'aime essayer de me dépasser constamment.
+            </p>
+        </section>
 
-            <!-- PROJECTS -->
-            <section class="projets fade-in">
-                <h2>Mes projets</h2>
+        <section class="projets fade-in">
+            <h2>Mes projets</h2>
 
-                <article class="projet">
-                    <h3>Portfolio Personnel</h3>
-                    <p>Création de mon site web pour présenter mes projets future.</p>
-                </article>
+            <article class="projet">
+                <h3>Portfolio Personnel</h3>
+                <p>Création de mon site web pour présenter mes projets future.</p>
+            </article>
 
-                <!-- PROJET QUIZ -->
-                <article class="projet">
-                    <h3>Mini Quiz – Capitales d'Europe</h3>
-                    <p>Un mini-quiz créé en Python puis adapté en JavaScript.</p>
-                    <a href="quiz.html">👉 Jouer au quiz</a>
-                </article>
+            <article class="projet">
+                <h3>Mini Quiz – Capitales d'Europe</h3>
+                <div class="quiz-container">
+                    <div id="menu" class="fade-in">
+                        <p>Nombre de questions frr :</p>
+                        <input type="number" id="nbQuestions" value="5" min="1" max="20">
+                        <br>
+                        <button id="start-btn">Commencer le quiz</button>
+                    </div>
 
-            </section>
+                    <div id="quiz-area" style="display:none;" class="fade-in">
+                        <h3 id="questionText"></h3>
+                        <input type="text" id="answerInput" placeholder="Votre réponse">
+                        <div id="feedback" class="feedback"></div>
+                        <button id="nextBtn" style="display:none;">Suivant</button>
+                    </div>
 
-            <!-- CONTACT -->
-            <section class="contact fade-in">
-                <h2>Contact</h2>
-                <p>
-                    Voici mon GitHub :
-                    <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
-                </p>
-            </section>
+                    <div id="scoreArea" style="display:none;" class="fade-in">
+                        <h4>Fin du quiz</h4>
+                        <p id="scoreText"></p>
+                        <button id="restartBtn">Rejouer</button>
+                    </div>
+                </div>
+            </article>
 
-        </main>
+        </section>
 
-        <footer>
-            <p>&copy; 2025 Ilyass – Tous droits réservés</p>
-        </footer>
-    </div>
+        <section class="contact fade-in">
+            <h2>Contact</h2>
+            <p>
+                Voici mon GitHub :
+                <a href="https://github.com/ilyass-06" target="_blank">Clique ici</a>
+            </p>
+        </section>
 
-    <script>
-        const toggleBtn = document.getElementById("theme-toggle");
+    </main>
 
-        toggleBtn.onclick = () => {
-            document.body.classList.toggle("light");
-            if(document.body.classList.contains("light")){
-                toggleBtn.textContent = '☀️';
-            } else {
-                toggleBtn.textContent = '🌙';
-            }
-        };
-    </script>
+    <footer>
+        <p>&copy; 2025 Ilyass – Tous droits réservés</p>
+    </footer>
+</div>
+
+<script>
+const toggleBtn = document.getElementById("theme-toggle");
+toggleBtn.onclick = () => {
+    document.body.classList.toggle("light");
+    toggleBtn.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+};
+
+const QUESTIONS = [
+    ["France","Paris"],["Italie","Rome"],["Allemagne","Berlin"],
+    ["Espagne","Madrid"],["Portugal","Lisbonne"],["Belgique","Bruxelles"],
+    ["Suisse","Berne"],["Autriche","Vienne"],["Pologne","Varsovie"],
+    ["Grèce","Athènes"],["Suède","Stockholm"],["Norvège","Oslo"],
+    ["Finlande","Helsinki"],["Danemark","Copenhague"],["Irlande","Dublin"],
+    ["Pays-Bas","Amsterdam"],["Royaume-Uni","Londres"],["Hongrie","Budapest"],
+    ["République tchèque","Prague"],["Croatie","Zagreb"]
+];
+
+let quiz = [], index = 0, score = 0, nbQuestions = 5;
+const menu = document.getElementById("menu");
+const startBtn = document.getElementById("start-btn");
+const quizArea = document.getElementById("quiz-area");
+const questionText = document.getElementById("questionText");
+const answerInput = document.getElementById("answerInput");
+const feedback = document.getElementById("feedback");
+const nextBtn = document.getElementById("nextBtn");
+const scoreArea = document.getElementById("scoreArea");
+const scoreText = document.getElementById("scoreText");
+const restartBtn = document.getElementById("restartBtn");
+
+startBtn.onclick = () => {
+    nbQuestions = parseInt(document.getElementById("nbQuestions").value);
+    if(isNaN(nbQuestions) || nbQuestions < 1 || nbQuestions > QUESTIONS.length) nbQuestions = 5;
+    quiz = QUESTIONS.sort(() => 0.5 - Math.random()).slice(0, nbQuestions);
+    index = 0; score = 0;
+    menu.style.display = "none";
+    quizArea.style.display = "block";
+    showQuestion();
+};
+
+function showQuestion(){
+    feedback.textContent = "";
+    nextBtn.style.display = "none";
+    questionText.textContent = `Quelle est la capitale de ${quiz[index][0]} ?`;
+    answerInput.value = "";
+    answerInput.focus();
+    questionText.classList.remove("question-fade");
+    void questionText.offsetWidth;
+    questionText.classList.add("question-fade");
+}
+
+answerInput.addEventListener("keyup", (e) => { if(e.key === "Enter") checkAnswer(); });
+
+function checkAnswer(){
+    const rep = answerInput.value.trim().toLowerCase();
+    const correct = quiz[index][1].toLowerCase();
+    if(rep === correct){ feedback.textContent = "T'es chaud frerot bonne réponse !"; score++; }
+    else{ feedback.textContent = `ahh dommage mauvaise réponse. La capitale est : ${quiz[index][1]}`; }
+    nextBtn.style.display = "inline-block";
+}
+
+nextBtn.onclick = () => {
+    index++;
+    if(index < quiz.length) showQuestion();
+    else {
+        quizArea.style.display = "none";
+        scoreArea.style.display = "block";
+        scoreText.textContent = `Votre score : ${score}/${quiz.length}`;
+    }
+};
+
+restartBtn.onclick = () => {
+    scoreArea.style.display = "none";
+    menu.style.display = "block";
+    quizArea.style.display = "none";
+    feedback.textContent = "";
+};
+</script>
 
 </body>
 </html>
+
